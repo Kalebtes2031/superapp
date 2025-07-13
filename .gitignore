@@ -1,0 +1,30 @@
+
+# .gitignore
+# Node.js dependencies
+node_modules/
+.yarn/cache/ # Add this for Yarn 2+ to ignore its cache, if applicable
+.pnp.cjs      # Add for Yarn Plug'n'Play, if applicable
+.pnp.loader.cjs
+
+# Python virtual environments (for backend)
+.venv/        # Pipenv's default virtual environment location
+venv/         # Common venv location
+
+# Python compiled files
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Environment variables
+.env
+*.env
+
+# Build outputs
+build/
+dist/
+# Other common ignores
+*.log
+*.swp
+.DS_Store
+npm-debug.log*
+yarn-debug.log*

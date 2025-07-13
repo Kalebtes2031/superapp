@@ -1,0 +1,65 @@
+# .pre-commit-config.yaml
+exclude: |
+  (?x)^(
+      frontend/node_modules/|
+      backend/venv/| # If you use venv instead of pipenv for some reason
+      backend/.venv/| # For pipenv's default .venv location
+      .git/
+  )$
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0 # Use the latest stable version
+    hooks:
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: mixed-line-ending
+
+  - repo: https://github.com/PyCQA/flake8
+    rev: 6.0.0 # Use the latest stable version
+    hooks:
+      - id: flake8
+        # --- CHANGES START HERE ---
+        language: python # Change from system to python
+        types: [python]
+        additional_dependencies: ["flake8==6.0.0"] # Specify the version
+        # --- CHANGES END HERE ---
+
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.12.0 # Use the latest stable version
+    hooks:
+      - id: isort
+        name: isort (python)
+        # --- CHANGES START HERE ---
+        language: python # Change from system to python
+        types: [python]
+        additional_dependencies: ["isort==5.12.0"] # Specify the version
+        # --- CHANGES END HERE ---
+
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v8.43.0 # Use the latest stable version
+    hooks:
+      - id: eslint
+        files: \.(js|jsx|ts|tsx)$ # Apply only to JS/TS files
+        types: [file]
+        args: ["--fix"] # Automatically fix issues if possible
+        # --- CHANGES START HERE ---
+        language: node # Change from system to node
+        additional_dependencies: # Specify the packages pre-commit should install in its internal node environment
+          - eslint@8.43.0 # Use the specific version you prefer
+          - "@typescript-eslint/eslint-plugin@5.62.0" # If using TypeScript
+          - "@typescript-eslint/parser@5.62.0" # If using TypeScript
+          # Add any other ESLint plugins/configs your frontend uses, e.g.:
+          # - 'eslint-plugin-react@7.32.2'
+          # - 'eslint-config-airbnb@19.0.4'
+        # --- CHANGES END HERE ---
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v3.0.0 # Use the latest stable version
+    hooks:
+      - id: prettier
+        files: \.(js|jsx|ts|tsx|json|md|css|html|yaml)$ # Apply to various file types
+        # --- CHANGES START HERE ---
+        language: node # Change from system to node
+        additional_dependencies:
+          - prettier@3.0.0 # Use the specific version you prefer
+        # --- CHANGES END HERE ---
