@@ -23,6 +23,7 @@ jobs:
         with:
           node-version: '18' # Adjust if needed
           cache: 'yarn' # Add this line to cache Yarn dependencies
+          cache-dependency-path: frontend/yarn.lock
       - name: Install dependencies
         run: |
           cd frontend
@@ -46,6 +47,7 @@ jobs:
         with:
           node-version: '18' # Adjust if needed
           cache: 'yarn' # Add this line
+          cache-dependency-path: frontend/yarn.lock
       - name: Install dependencies
         run: |
           cd frontend
@@ -65,6 +67,7 @@ jobs:
         with:
           node-version: '18' # Adjust if needed
           cache: 'yarn' # Add this line
+          cache-dependency-path: frontend/yarn.lock
       - name: Install dependencies
         run: |
           cd frontend
