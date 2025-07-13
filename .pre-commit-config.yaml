@@ -42,16 +42,18 @@ repos:
       - id: eslint
         files: \.(js|jsx|ts|tsx)$ # Apply only to JS/TS files
         types: [file]
-        args: ["--fix"] # Automatically fix issues if possible
+        args: ["--fix", "-c", "frontend/eslint.config.js"]
         # --- CHANGES START HERE ---
         language: node # Change from system to node
         additional_dependencies: # Specify the packages pre-commit should install in its internal node environment
-          - eslint@8.43.0 # Use the specific version you prefer
-          - "@typescript-eslint/eslint-plugin@5.62.0" # If using TypeScript
-          - "@typescript-eslint/parser@5.62.0" # If using TypeScript
-          # Add any other ESLint plugins/configs your frontend uses, e.g.:
-          # - 'eslint-plugin-react@7.32.2'
-          # - 'eslint-config-airbnb@19.0.4'
+          # Use the versions directly from your frontend/package.json
+          - eslint@9.31.0
+          - "@babel/core@7.28.0"
+          - "@babel/eslint-parser@7.28.0"
+          - globals@16.3.0
+          - eslint-plugin-react@7.37.5
+          - eslint-plugin-react-hooks@5.2.0
+          - "metro-react-native-babel-preset@latest"
         # --- CHANGES END HERE ---
   - repo: https://github.com/pre-commit/mirrors-prettier
     rev: v3.0.0 # Use the latest stable version
